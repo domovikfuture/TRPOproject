@@ -5,11 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Border BorderThickness="1" BorderBrush="Black">
-            <Button Content="Button"/>
-        </Border>
+        Title="Tailoring" Height="450" Width="800" WindowStyle="SingleBorderWindow">
+    <Grid x:Name="Register" Background="DarkBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" FontSize="50" VerticalAlignment="Center" Foreground="white" Grid.ColumnSpan="3">
+            Регистрация
+        </Label>
 
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Логин" Foreground="DarkCyan" VerticalAlignment="Center"></TextBlock>
     </Grid>
 </Window>
