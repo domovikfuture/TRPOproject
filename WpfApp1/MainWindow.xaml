@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="Adjust" Height="450" Width="800"
-        Background="DarkBlue">
+        Background="AliceBlue" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -14,15 +14,31 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Foreground="white" FontSize="45" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+        <Label Foreground="Black" FontSize="45" HorizontalAlignment="Center" VerticalAlignment="Center"
                Grid.Column="1" Grid.Row="0">
             Регистрация
         </Label>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Label Grid.Row="0" FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Right">Логин:</Label>
+            <Label Grid.Row="1" FontSize="23" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.RowSpan="2">Пароль:</Label>
+            <TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Height="27" FontSize="20" Foreground="Green">Логин</TextBox>
+        </Grid>
     </Grid>
 </Window>
