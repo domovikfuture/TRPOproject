@@ -25,7 +25,7 @@ namespace WpfApp1
                 InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Reg_Click(object sender, RoutedEventArgs e)
         {
             string login = loginBox.Text.Trim().ToUpper();
             string []name = nameBox.Text.Trim().Split(" ");
