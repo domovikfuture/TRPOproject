@@ -34,10 +34,10 @@ namespace WpfApp1
 
             bool isGood = true; 
             //Проверка поля логина
-            if(login.Length < 5)
+            if(login.Length < 4)
             {
                 isGood = false;
-                loginBox.ToolTip = "Длина логина должна быть от 5 букв!";
+                loginBox.ToolTip = "Длина логина должна быть от 4 букв!";
                 loginBox.Foreground = Brushes.Red;
             }
             else
@@ -60,10 +60,10 @@ namespace WpfApp1
             }
 
             //Проверка пароля
-            if(password1.Length < 6)
+            if(password1.Length < 4)
             {
                 isGood = false;
-                firstPassBox.ToolTip = "Длина пароля должна быть от 6 символов!";
+                firstPassBox.ToolTip = "Длина пароля должна быть от 4 символов!";
                 firstPassBox.Foreground = Brushes.Red;
             }
             else
@@ -87,7 +87,15 @@ namespace WpfApp1
 
             if(isGood == true)
             {
-                MessageBox.Show("Ура ты не дебил!");
+                loginBox.Text = "";
+                nameBox.Text = "";
+                firstPassBox.Password = "";
+                secondPassBox.Password = "";
+                SQLbase.Insert($"insert into Customer(login, name, pass) values (N'{login}',N'{name[0]} {name[1]} {name[2]}',N'{password1}')");
+                Login log = new Login();
+
+                this.Close();
+                log.Show();
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -52,10 +53,15 @@ namespace WpfApp1
                 firstPassBox.Foreground = Brushes.Black;
             }
 
-            if (isGood == true)
-            {
-                MessageBox.Show("Ура ты не дебил!");
-            }
+            //if (isGood == true)
+            //{
+            //    DataTable table = SQLbase.Select($"select * from Cusomer where {login} = login");
+                
+            //    if(table[0][3] == password1)
+            //    {
+
+            //    }
+            //}
         }
     }
 }

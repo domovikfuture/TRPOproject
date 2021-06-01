@@ -7,20 +7,6 @@
         mc:Ignorable="d"
         
         Title="Adjust" Height="450" Width="800" ResizeMode="NoResize">
-    <!--<Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <LinearGradientBrush.RelativeTransform>
-                <TransformGroup>
-                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
-                    <RotateTransform Angle="45" CenterY="0.5" CenterX="0.5"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </LinearGradientBrush.RelativeTransform>
-            <GradientStop Color="#FF4C5DFF"/>
-            <GradientStop Color="#FFC7E4FD" Offset="1"/>
-        </LinearGradientBrush>
-    </Window.Background>-->
     <Grid Background="#d9cece">
         <Border Background="White" VerticalAlignment="Center" Padding="40,20" MinWidth="400" MaxWidth="600" CornerRadius="15">
             <Border.Effect>
