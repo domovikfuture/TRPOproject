@@ -32,18 +32,45 @@ namespace WpfApp1
             string password1 = firstPassBox.Password.Trim();
             string password2 = secondPassBox.Password.Trim();
 
-            bool isGood = true; 
+            bool isGood = true;
             //Проверка поля логина
-            if(login.Length < 4)
+            if (login.Length < 5)
             {
                 isGood = false;
-                loginBox.ToolTip = "Длина логина должна быть от 4 букв!";
+                loginBox.ToolTip = "Длина логина должна быть от 5 букв!";
                 loginBox.Foreground = Brushes.Red;
             }
             else
             {
-                loginBox.ToolTip = " ";
-                loginBox.Foreground = Brushes.Black;
+                bool stop = false;
+
+                foreach (char x in login)
+                {
+                    Console.WriteLine("yes");
+                    if (Char.IsDigit(x))
+                    {
+                        stop = true;
+                        break;
+                    }
+
+                    if (Convert.ToInt16(x) < 0 || Convert.ToInt16(x) > 128)
+                    {
+                        stop = true;
+                        break;
+                    }
+                }
+
+                if (stop)
+                {
+                    isGood = false;
+                    loginBox.ToolTip = "Недопустимый ввод символов!";
+                    loginBox.Foreground = Brushes.Red;
+                }
+                else
+                {
+                    loginBox.ToolTip = " ";
+                    loginBox.Foreground = Brushes.Black;
+                }
             }
 
             //Поле фио
