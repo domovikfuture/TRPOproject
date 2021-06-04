@@ -25,7 +25,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Вход" Grid.Column="0"/>
+                    <Button Content="Вход" Grid.Column="0" Click="ButtonLoginGo" Cursor="Hand"/>
                     <Button Click="Button_Reg_Click" Content="Регистрация" Grid.Column="2" Style="{StaticResource MaterialDesignOutlinedButton}" Cursor="Hand"/>
                 </Grid>
             </StackPanel>

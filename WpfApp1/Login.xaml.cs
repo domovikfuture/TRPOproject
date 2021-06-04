@@ -29,10 +29,10 @@ namespace WpfApp1
             string password1 = firstPassBox.Password.Trim();
 
             bool isGood = true;
-            if (login.Length < 5)
+            if (login.Length < 1)
             {
                 isGood = false;
-                loginBox.ToolTip = "Длина логина должна быть от 5 букв!";
+                loginBox.ToolTip = "Введите логин!";
                 loginBox.Foreground = Brushes.Red;
             }
             else
@@ -41,10 +41,10 @@ namespace WpfApp1
                 loginBox.Foreground = Brushes.Black;
             }
 
-            if (password1.Length < 6)
+            if (password1.Length < 1)
             {
                 isGood = false;
-                firstPassBox.ToolTip = "Длина пароля должна быть от 6 символов!";
+                firstPassBox.ToolTip = "Введите пароль!";
                 firstPassBox.Foreground = Brushes.Red;
             }
             else
@@ -53,15 +53,31 @@ namespace WpfApp1
                 firstPassBox.Foreground = Brushes.Black;
             }
 
-            //if (isGood == true)
-            //{
-            //    DataTable table = SQLbase.Select($"select * from Cusomer where {login} = login");
-                
-            //    if(table[0][3] == password1)
-            //    {
-
-            //    }
-            //}
+            if (isGood == true)
+            {
+                DataTable table = SQLbase.Select($"select * from Customer where login = '{login}'");
+              
+                if (table.Rows.Count > 0)
+                {
+                    loginBox.ToolTip = " ";
+                    loginBox.Foreground = Brushes.Black;
+                    table = SQLbase.Select($"select * from Customer where login = '{login}' and pass = '{password1}'");
+                    if(table.Rows.Count > 0)
+                    {
+                        MessageBox.Show("Сюда лут");
+                    }
+                    else
+                    {
+                        firstPassBox.ToolTip = "Неправильный пароль!";
+                        firstPassBox.Foreground = Brushes.Red;
+                    }
+                }
+                else
+                {
+                    loginBox.ToolTip = "Такого пользователя не существует!";
+                    loginBox.Foreground = Brushes.Red;
+                }
+            }
         }
     }
 }

@@ -3,7 +3,6 @@ GO
 
 USE Adjust
 
-go
 DROP TABLE Customer;
 go
 
@@ -22,4 +21,4 @@ VALUES
 select * from Customer
 
 select * from Customer
-where login = 'Log'
+where login = 'Log' and pass = '1234'

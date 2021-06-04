@@ -34,10 +34,10 @@ namespace WpfApp1
 
             bool isGood = true;
             //Проверка поля логина
-            if (login.Length < 5)
+            if (login.Length < 5 && login.Length > 20)
             {
                 isGood = false;
-                loginBox.ToolTip = "Длина логина должна быть от 5 букв!";
+                loginBox.ToolTip = "Длина логина должна быть от 5 до 20 букв!";
                 loginBox.Foreground = Brushes.Red;
             }
             else
@@ -87,10 +87,10 @@ namespace WpfApp1
             }
 
             //Проверка пароля
-            if(password1.Length < 4)
+            if(password1.Length < 6 && password1.Length > 16)
             {
                 isGood = false;
-                firstPassBox.ToolTip = "Длина пароля должна быть от 4 символов!";
+                firstPassBox.ToolTip = "Длина пароля должна быть от 6 до 16 символов!";
                 firstPassBox.Foreground = Brushes.Red;
             }
             else
@@ -124,6 +124,14 @@ namespace WpfApp1
                 this.Close();
                 log.Show();
             }
+        }
+
+        private void ButtonLoginGo(object sender, RoutedEventArgs e)
+        {
+            Login log = new Login();
+            this.Close();
+
+            log.Show();
         }
     }
 }

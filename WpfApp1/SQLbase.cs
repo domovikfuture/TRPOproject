@@ -30,7 +30,9 @@ namespace WpfApp1
             SqlCommand sqlCommand = sqlConnection.CreateCommand();          // создаём команду
             sqlCommand.CommandText = str;                             // присваиваем команде текст
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand); // создаём обработчик
+
             sqlDataAdapter.Fill(dataTable);                                 // возращаем таблицу с результатом
+            sqlConnection.Close();
 
             return dataTable;
         }
