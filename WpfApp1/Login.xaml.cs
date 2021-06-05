@@ -64,7 +64,10 @@ namespace WpfApp1
                     table = SQLbase.Select($"select * from Customer where login = '{login}' and pass = '{password1}'");
                     if(table.Rows.Count > 0)
                     {
-                        MessageBox.Show("Сюда лут");
+                        Goods s = new Goods();
+                        this.Close();
+
+                        s.Show();
                     }
                     else
                     {
@@ -78,6 +81,14 @@ namespace WpfApp1
                     loginBox.Foreground = Brushes.Red;
                 }
             }
+        }
+
+        private void GoToReg(object sender, RoutedEventArgs e)
+        {
+            MainWindow m = new MainWindow();
+            this.Close();
+
+            m.Show();
         }
     }
 }
