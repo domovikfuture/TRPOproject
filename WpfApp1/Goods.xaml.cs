@@ -27,7 +27,20 @@ namespace WpfApp1
         private void ShowList()
         {
             DataTable talbe = SQLbase.Select($"select * from Goods");
+            
             listGoods.ItemsSource = talbe.DefaultView;
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView x = (DataRowView)listGoods.Items[0];
+            string s = "";
+            foreach (var item in x.Row.ItemArray)
+            {
+                s += item.ToString()+"*";
+            }
+            MessageBox.Show(x.Row.ItemArray[0].ToString()+"\n\n"+s);// x.Row.Field<double>("price").ToString());
         }
     }
 }

@@ -23,14 +23,14 @@
                             <GridViewColumn DisplayMemberBinding="{Binding Path=name}" 
                                             Header="Название" />
                             <GridViewColumn DisplayMemberBinding="{Binding Path=price}" 
-                                            Header="цена"/>
-                            <GridViewColumn Header="Изображение">
+                                            Header="Цена"/>
+                            <!--<GridViewColumn Header="Изображение">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Image Source="{Binding Path=Image}"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                            </GridViewColumn>-->
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -41,7 +41,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Button Content="Товары" Grid.Column="0" Style="{StaticResource MaterialDesignOutlinedButton}" Cursor="Hand"/>
-                    <Button Content="Корзина" Grid.Column="2" Cursor="Hand"/>
+                    <Button Content="Корзина" Grid.Column="2" Cursor="Hand" Click="Button_Click"/>
                 </Grid>
             </StackPanel>
         </Border>
