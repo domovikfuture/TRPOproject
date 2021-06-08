@@ -17,7 +17,45 @@
 
             <StackPanel>
                 <TextBlock Text="Товары" HorizontalAlignment="Center" FontSize="40" Style="{StaticResource MaterialDesignCharacterCounterTextBlock}" />
-                <ListView Height="220" x:Name="listGoods">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="1"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    
+
+                    <StackPanel >
+                        <Label Content="Фильтры" HorizontalAlignment="Center" FontSize="15"/>
+                        <TextBox x:Name="SeatchPrice" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  materialDesign:HintAssist.Hint="По цене" Margin="0 0 0 5" Cursor="IBeam"/>
+
+                        <StackPanel Orientation="Horizontal" x:Name="RadioButtonFilter">
+                            <RadioButton GroupName="FiltPrice" Content="Меньше" Margin="10 0" Checked="RadioButton_Checked" IsChecked="True"/>
+                            <RadioButton GroupName="FiltPrice" Content="Больше" Margin="10 0" Checked="RadioButton_Checked"/>
+                            <RadioButton GroupName="FiltPrice" Content="Равно" Margin="10 0" Checked="RadioButton_Checked"/>
+                        </StackPanel>
+
+                        <TextBox x:Name="SearchName" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  materialDesign:HintAssist.Hint="По названию" Margin="0 0 0 5"/>
+
+                        <Grid Margin="0 20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Content="Поиск" Height="40" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingActionButton}" />
+                            <Button Content="Сброс" Height="40" Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                    Click="Reset"/>
+                            <Button Content="Добавить" x:Name="ButtonAdd" Height="40" Grid.Column="2" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                    Click="AddGoods" Cursor="Hand" />
+                        </Grid>
+                    </StackPanel>
+
+                    <Border Background="DarkSeaGreen" Grid.Column="1" CornerRadius="20"/>
+
+                    <ListView Height="220" x:Name="listGoods" Grid.Column="2">
                     <ListView.View>
                         <GridView >
                             <GridViewColumn DisplayMemberBinding="{Binding Path=name}" 
@@ -34,18 +72,19 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
+
+                    
+                </Grid>
                 <Grid Margin="20,15">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Товары" Grid.Column="0" Style="{StaticResource MaterialDesignOutlinedButton}" Cursor="Hand"/>
-                    <Button Content="Корзина" Grid.Column="2" Cursor="Hand" Click="Button_Click"/>
+                    <Button Content="Товары" Grid.Column="0" Style="{StaticResource MaterialDesignOutlinedButton}"/>
+                    <Button Content="Корзина" Grid.Column="2" Cursor="Hand" />
                 </Grid>
             </StackPanel>
         </Border>
-
-
     </Grid>
 </Window>
