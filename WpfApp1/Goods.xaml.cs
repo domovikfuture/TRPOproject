@@ -36,7 +36,7 @@ namespace WpfApp1
         private void ShowList(string str)
         {
             DataTable talbe = SQLbase.Select(str);
-            
+
             listGoods.ItemsSource = talbe.DefaultView;
         }
 
@@ -55,8 +55,8 @@ namespace WpfApp1
         {
             int x = listGoods.SelectedIndex;
 
-            
-            if(x == -1)
+
+            if (x == -1)
             {
                 ButtonAdd.ToolTip = "Выберите элемент!";
                 ButtonAdd.Foreground = Brushes.Red;
@@ -75,16 +75,98 @@ namespace WpfApp1
             RadioButton pressed = (RadioButton)sender;
             string s = pressed.Content.ToString();
 
-            if (s == "Меньше")
+            if (s == "Дешевле")
             {
                 crt = Criterion.less;
-            }throw new Exception("Незаконченный функционал");
+                return;
+            }
+            if (s == "Дороже")
+            {
+                crt = Criterion.more;
+                return;
+            }
+            if (s == "Ровно")
+            {
+                crt = Criterion.equal;
+                return;
+            }
         }
 
         private void Reset(object sender, RoutedEventArgs e)
         {
             SeatchPrice.Text = "";
             SearchName.Text = "";
+
+            ShowList($"select * from Goods");
+        }
+
+        private void Search(object sender, RoutedEventArgs e)
+        {
+            string price = SeatchPrice.Text;
+            string name = SearchName.Text;
+
+            if ((name.Trim().Length == 0 || name == null) && price.Trim().Length > 0)
+            {
+                int price_int = int.Parse(price);
+                if (crt == Criterion.equal)
+                {
+                    ShowList($"select * from Goods where price = {price_int}");
+
+                }
+                if (crt == Criterion.more)
+                {
+                    ShowList($"select * from Goods where price >= {price_int}");
+
+                }
+                if (crt == Criterion.less)
+                {
+                    ShowList($"select * from Goods where price <= {price_int}");
+
+                }
+                return;
+            }
+            else if ((price.Trim().Length == 0 || price == null) && name.Trim().Length > 0)
+            {
+                if (crt == Criterion.equal)
+                {
+                    ShowList($"select * from Goods where name = '{name}'");
+
+                }
+                if (crt == Criterion.more)
+                {
+                    ShowList($"select * from Goods where name = '{name}'");
+
+                }
+                if (crt == Criterion.less)
+                {
+                    ShowList($"select * from Goods where name = '{name}'");
+
+                }
+                return;
+            }
+            else if (name.Trim().Length > 0 && price.Trim().Length > 0)
+            {
+                if (crt == Criterion.equal)
+                {
+                    ShowList($"select * from Goods where price = {price} and name = '{name}'");
+
+                }
+                if (crt == Criterion.more)
+                {
+                    ShowList($"select * from Goods where price >= {price} and name = '{name}'");
+
+                }
+                if (crt == Criterion.less)
+                {
+                    ShowList($"select * from Goods where price <= {price} and name = '{name}'");
+
+                }
+                return;
+            }
+            else
+            {
+                ShowList($"select * from Goods");
+            }
         }
     }
 }

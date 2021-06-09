@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,8 +69,18 @@ namespace WpfApp1
                 }
                 else
                 {
-                    loginBox.ToolTip = " ";
-                    loginBox.Foreground = Brushes.Black;
+                    DataTable table = SQLbase.Select($"select * from Customer where login = '{login}'");
+                    if (table.Rows.Count > 0)
+                    {
+                        isGood = false;
+                        loginBox.ToolTip = "Такой пользователь уже существует!";
+                        loginBox.Foreground = Brushes.Red;
+                    }
+                    else
+                    {
+                        loginBox.ToolTip = " ";
+                        loginBox.Foreground = Brushes.Black;
+                    }
                 }
             }
 
@@ -82,7 +93,7 @@ namespace WpfApp1
             }
             else
             {
-                nameBox.ToolTip = " ";
+                nameBox.ToolTip = "";
                 nameBox.Foreground = Brushes.Black;
             }
 
@@ -95,7 +106,7 @@ namespace WpfApp1
             }
             else
             {
-                firstPassBox.ToolTip = " ";
+                firstPassBox.ToolTip = "";
                 firstPassBox.Foreground = Brushes.Black;
             }
 
@@ -108,7 +119,7 @@ namespace WpfApp1
             }
             else
             {
-                secondPassBox.ToolTip = " ";
+                secondPassBox.ToolTip = "";
                 secondPassBox.Foreground = Brushes.Black;
             }
 

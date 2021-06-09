@@ -31,9 +31,9 @@
                         <TextBox x:Name="SeatchPrice" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  materialDesign:HintAssist.Hint="По цене" Margin="0 0 0 5" Cursor="IBeam"/>
 
                         <StackPanel Orientation="Horizontal" x:Name="RadioButtonFilter">
-                            <RadioButton GroupName="FiltPrice" Content="Меньше" Margin="10 0" Checked="RadioButton_Checked" IsChecked="True"/>
-                            <RadioButton GroupName="FiltPrice" Content="Больше" Margin="10 0" Checked="RadioButton_Checked"/>
-                            <RadioButton GroupName="FiltPrice" Content="Равно" Margin="10 0" Checked="RadioButton_Checked"/>
+                            <RadioButton GroupName="FiltPrice" Content="Дешевле" Margin="10 0" Checked="RadioButton_Checked" IsChecked="True"/>
+                            <RadioButton GroupName="FiltPrice" Content="Дороже" Margin="10 0" Checked="RadioButton_Checked"/>
+                            <RadioButton GroupName="FiltPrice" Content="Ровно" Margin="10 0" Checked="RadioButton_Checked"/>
                         </StackPanel>
 
                         <TextBox x:Name="SearchName" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  materialDesign:HintAssist.Hint="По названию" Margin="0 0 0 5"/>
@@ -45,7 +45,8 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Content="Поиск" Height="40" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingActionButton}" />
+                            <Button Content="Поиск" Height="40" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                    Click="Search" />
                             <Button Content="Сброс" Height="40" Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionButton}"
                                     Click="Reset"/>
                             <Button Content="Добавить" x:Name="ButtonAdd" Height="40" Grid.Column="2" Style="{StaticResource MaterialDesignFloatingActionButton}"
