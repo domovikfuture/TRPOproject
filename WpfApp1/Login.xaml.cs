@@ -64,7 +64,7 @@ namespace WpfApp1
                     table = SQLbase.Select($"select * from Customer where login = '{login}' and pass = '{password1}'");
                     if(table.Rows.Count > 0)
                     {
-                        Goods s = new Goods();
+                        Goods s = new Goods(login);
                         this.Close();
 
                         s.Show();

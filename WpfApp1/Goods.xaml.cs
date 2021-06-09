@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Linq;
 
 namespace WpfApp1
 {
@@ -19,9 +20,19 @@ namespace WpfApp1
     public partial class Goods : Window
     {
         Criterion crt;
+        string LOGIN;
+
+        public Goods(string _login = "")
+        {
+            InitializeComponent();
+
+            this.LOGIN = _login;
+            ShowList($"select * from Goods");
+        }
 
         public Goods()
         {
+            LOGIN = "Admin";
             InitializeComponent();
             ShowList($"select * from Goods");
         }
@@ -55,12 +66,13 @@ namespace WpfApp1
         {
             int x = listGoods.SelectedIndex;
 
+            DataTable table = SQLbase.Select($"select * from Goods");
+            throw new Exception("");
 
             if (x == -1)
             {
                 ButtonAdd.ToolTip = "Выберите элемент!";
                 ButtonAdd.Foreground = Brushes.Red;
-                MessageBox.Show(x.ToString());
                 return;
             }
             else
@@ -68,6 +80,10 @@ namespace WpfApp1
                 ButtonAdd.ToolTip = "";
                 ButtonAdd.Foreground = Brushes.LightGreen;
             }
+
+            if (
+
+            SQLbase.Insert($"insert into Orders(login, good, count) values (N'{LOGIN}',N'{table.Rows[x][0]}',N'1')");
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
@@ -104,6 +120,21 @@ namespace WpfApp1
         {
             string price = SeatchPrice.Text;
             string name = SearchName.Text;
+
+            foreach(Char x in price)
+            {
+                if (!char.IsDigit(x))
+                {
+                    SeatchPrice.ToolTip = "Требуется числовое значение!";
+                    SeatchPrice.Foreground = Brushes.Red;
+                    return;
+                }
+                else
+                {
+                    SeatchPrice.ToolTip = "";
+                    SeatchPrice.Foreground = Brushes.Black;
+                }
+            }
 
             if ((name.Trim().Length == 0 || name == null) && price.Trim().Length > 0)
             {
@@ -167,6 +198,13 @@ namespace WpfApp1
             {
                 ShowList($"select * from Goods");
             }
+        }
+
+        private void GoToOrders(object sender, RoutedEventArgs e)
+        {
+            //Orders o = new Orders(LOGIN);
+            //this.Close();
+            //o.Show();
         }
     }
 }
