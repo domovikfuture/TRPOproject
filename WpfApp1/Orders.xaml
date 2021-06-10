@@ -10,18 +10,18 @@
         Title="Adjust" Height="450" Width="800" ResizeMode="NoResize">
 
     <Grid Background="#d9cece">
-        <!--<Border Background="White" VerticalAlignment="Center" Padding="40,20" MinWidth="400" MaxWidth="600" CornerRadius="15">
+        <Border Background="White" VerticalAlignment="Center" Padding="40,20" MinWidth="400" MaxWidth="600" CornerRadius="15">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="20" Color="DarkGray" ShadowDepth="0"/>
             </Border.Effect>
 
             <StackPanel>
-                <TextBlock Text="Товары" HorizontalAlignment="Center" FontSize="40" Style="{StaticResource MaterialDesignCharacterCounterTextBlock}" />
+                <TextBlock Text="Корзина" HorizontalAlignment="Center" FontSize="40" Style="{StaticResource MaterialDesignCharacterCounterTextBlock}" />
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition Width="1"/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="350"/>
                     </Grid.ColumnDefinitions>
 
 
@@ -37,36 +37,32 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
 
                             <Button Content="Изменить" Height="40" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingActionButton}"
-                                    Click="Edit" Margin="15,0,16,0" VerticalAlignment="Top" />
+                                    Click="Edit" VerticalAlignment="Top" x:Name="ButtonEdit"/>
                             <Button Content="Удалить" Height="40" Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionButton}"
-                                    Click="Reset"/>
-                            <Button Content="Далее" x:Name="ButtonAdd" Height="40" Grid.Column="2" Style="{StaticResource MaterialDesignFloatingActionButton}"
-                                    Click="AddGoods" Cursor="Hand" />
+                                    Click="Delete" VerticalAlignment="Top"/>
+                            <Button Content="Далее" x:Name="ButtonAdd" Height="40" Style="{StaticResource MaterialDesignIconButton}"
+                                    Click="End" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom" />
                         </Grid>
                     </StackPanel>
 
                     <Border Background="DarkSeaGreen" Grid.Column="1" CornerRadius="20"/>
 
-                    <ListView Height="220" x:Name="listGoods" Grid.Column="2">
+                    <ListView Height="220" x:Name="listGoods" Grid.Column="2" SelectionChanged="makeSelect">
                         <ListView.View>
                             <GridView >
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=good}" 
-                                            Header="Название"/>
+                                            Header="Название" Width="100"/>
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=price}" 
                                             Header="Цена за штуку"/>
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=count}" 
                                             Header="Кол-во"/>
-                                --><!--<GridViewColumn Header="Изображение">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Image Source="{Binding Path=Image}"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>--><!--
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -79,10 +75,10 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Товары" Grid.Column="0" Style="{StaticResource MaterialDesignOutlinedButton}"/>
-                    <Button Content="Корзина" Grid.Column="2" Click="GoToOrders" />
+                    <Button Content="Товары" Grid.Column="0" Click="GoToGoods"/>
+                    <Button Content="Корзина" Grid.Column="2" Style="{StaticResource MaterialDesignOutlinedButton}"/>
                 </Grid>
             </StackPanel>
-        </Border>-->
+        </Border>
     </Grid>
 </Window>

@@ -67,7 +67,7 @@ namespace WpfApp1
             int x = listGoods.SelectedIndex;
 
             DataTable table = SQLbase.Select($"select * from Goods");
-            throw new Exception("");
+            
 
             if (x == -1)
             {
@@ -81,9 +81,16 @@ namespace WpfApp1
                 ButtonAdd.Foreground = Brushes.LightGreen;
             }
 
-            if (
+            DataTable tableOrders = SQLbase.Select($"select * from Orders where login = N'{LOGIN}' and good = N'{table.Rows[x][0]}'");
 
-            SQLbase.Insert($"insert into Orders(login, good, count) values (N'{LOGIN}',N'{table.Rows[x][0]}',N'1')");
+            if (tableOrders.Rows.Count > 0)
+            {
+                SQLbase.Insert($"update Orders set count = {(int)tableOrders.Rows[0][2] + 1} where login = N'{LOGIN}' and good = N'{table.Rows[x][0]}';");
+            }
+            else
+            {
+                SQLbase.Insert($"insert into Orders(login, good, count) values (N'{LOGIN}',N'{table.Rows[x][0]}',N'1')");
+            }
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
@@ -202,9 +209,9 @@ namespace WpfApp1
 
         private void GoToOrders(object sender, RoutedEventArgs e)
         {
-            //Orders o = new Orders(LOGIN);
-            //this.Close();
-            //o.Show();
+            Orders o = new Orders(LOGIN);
+            this.Close();
+            o.Show();
         }
     }
 }
