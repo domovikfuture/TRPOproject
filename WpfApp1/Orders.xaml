@@ -28,10 +28,10 @@
 
                     <StackPanel >
                         <Label Content="Редактирование" HorizontalAlignment="Center" FontSize="15"/>
-                        <TextBox x:Name="Count" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  materialDesign:HintAssist.Hint="Количество" Margin="0 0 0 5" Cursor="IBeam"/>
+                        <TextBox x:Name="Count" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  materialDesign:HintAssist.Hint="Количество" Margin="0 0 0 5"/>
 
                         <Label Content="Сумма заказа: " HorizontalAlignment="Center" FontSize="13"
-                               Margin="010"/>
+                               Margin="010" x:Name="orderPrice"/>
 
                         <Grid Margin="0 20">
                             <Grid.ColumnDefinitions>
@@ -44,11 +44,11 @@
                             </Grid.RowDefinitions>
 
                             <Button Content="Изменить" Height="40" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingActionButton}"
-                                    Click="Edit" VerticalAlignment="Top" x:Name="ButtonEdit"/>
+                                    Click="Edit" x:Name="ButtonEdit"/>
                             <Button Content="Удалить" Height="40" Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionButton}"
-                                    Click="Delete" VerticalAlignment="Top"/>
+                                    Click="Delete" x:Name="ButtonDelete"/>
                             <Button Content="Далее" x:Name="ButtonAdd" Height="40" Style="{StaticResource MaterialDesignIconButton}"
-                                    Click="End" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Bottom" />
+                                    Click="End" Grid.Row="1" Grid.ColumnSpan="2"/>
                         </Grid>
                     </StackPanel>
 
@@ -56,11 +56,11 @@
 
                     <ListView Height="220" x:Name="listGoods" Grid.Column="2" SelectionChanged="makeSelect">
                         <ListView.View>
-                            <GridView >
+                            <GridView>
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=good}" 
-                                            Header="Название" Width="100"/>
+                                            Header="Название"/>
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=price}" 
-                                            Header="Цена за штуку"/>
+                                            Header="Цена"/>
                                 <GridViewColumn DisplayMemberBinding="{Binding Path=count}" 
                                             Header="Кол-во"/>
                             </GridView>

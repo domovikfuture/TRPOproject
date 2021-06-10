@@ -81,7 +81,7 @@ namespace WpfApp1
                 ButtonAdd.Foreground = Brushes.LightGreen;
             }
 
-            DataTable tableOrders = SQLbase.Select($"select * from Orders where login = N'{LOGIN}' and good = N'{table.Rows[x][0]}'");
+            DataTable tableOrders = SQLbase.Select($"select login, good, count from Orders where login = N'{LOGIN}' and good = N'{table.Rows[x][0]}'");
 
             if (tableOrders.Rows.Count > 0)
             {

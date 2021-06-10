@@ -57,3 +57,8 @@ select * from Orders
 
 select * from Customer
 where login = 'Log' and pass = '1234'
+
+select login, good, count, price from Orders 
+inner join Goods on Orders.good = Goods.name where login = N'Admin'
+
+update Orders set count = 8 where login = 'Admin' and good = N'Футболка'

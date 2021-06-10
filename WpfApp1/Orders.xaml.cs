@@ -24,21 +24,36 @@ namespace WpfApp1
         {
             LOGIN = "Admin";
             InitializeComponent(); 
-            ShowList($"select login, good, count, price from Orders inner join Goods on Orders.good = Goods.name where login = N'{LOGIN}'");
+            ShowList();
         }
 
         public Orders(string login="")
         {
             this.LOGIN = login;
             InitializeComponent();
-            ShowList($"select login, good, count, price from Orders inner join Goods on Orders.good = Goods.name where login = N'{LOGIN}'");
+            ShowList();
         }
 
-        private void ShowList(string str)
+        private void ShowList()
         {
-            DataTable talbe = SQLbase.Select(str);
+            DataTable table = SQLbase.Select($"select login, good, count, price from Orders inner join Goods on Orders.good = Goods.name where login = N'{LOGIN}'");
 
-            listGoods.ItemsSource = talbe.DefaultView;
+            listGoods.ItemsSource = table.DefaultView;
+
+            double sum = 0;
+
+            if(table.Rows.Count == 0)
+            {
+                orderPrice.Content = $"Сумма заказа:";
+                return;
+            }
+
+            for(int i = 0; i < table.Rows.Count; i++)
+            {
+                sum += (double)table.Rows[i][3] * (int)table.Rows[i][2];
+            }
+
+            orderPrice.Content = $"Сумма заказа: {sum}";
         }
 
         private void GoToGoods(object sender, RoutedEventArgs e)
@@ -69,7 +84,7 @@ namespace WpfApp1
 
             int x = listGoods.SelectedIndex;
 
-            if (x == -1)
+            if (x == -1 || s.Length == 0)
             {
                 ButtonEdit.ToolTip = "Выберите элемент!";
                 ButtonEdit.Foreground = Brushes.Red;
@@ -82,28 +97,55 @@ namespace WpfApp1
             }
 
             DataTable table = SQLbase.Select($"select * from Orders where login = N'{LOGIN}'");
-            SQLbase.Insert($"update Orders set count = {(int)table.Rows[0][2] + 1} where login = N'{LOGIN}' and good = N'{table.Rows[x][0]}';");
+            SQLbase.Insert($"update Orders set count = {int.Parse(Count.Text)} where login = N'{LOGIN}' and good = N'{table.Rows[x][1]}'");
 
-            Count.Text = ((int)table.Rows[0][2] + 1).ToString();
+            ShowList();
         }
 
         private void makeSelect(object sender, SelectionChangedEventArgs e)
         {
 
-            DataRowView x = (DataRowView)listGoods.Items[0];
-            string s = "";
-            foreach (var item in x.Row.ItemArray)
+            int i = listGoods.SelectedIndex;
+
+            if(i == -1)
             {
-                s += item.ToString() + "*";
+                Count.Text = "";
+                return;
             }
-            MessageBox.Show(x.Row.ItemArray[0].ToString() + "\n\n" + s);// x.Row.Field<double>("price").ToString());
+
+            DataRowView x = (DataRowView)listGoods.Items[i];
+            //string s = "";
+            //foreach (var item in x.Row.ItemArray)
+            //{
+            //    s += item.ToString() + "*";
+            //}
+            //MessageBox.Show(x.Row.ItemArray[0].ToString() + "\n\n" + s);// x.Row.Field<double>("price").ToString());
 
             Count.Text = x.Row.ItemArray[2].ToString();
         }
 
         private void Delete(object sender, RoutedEventArgs e)
         {
+            int x = listGoods.SelectedIndex;
 
+            if (x == -1)
+            {
+                ButtonDelete.ToolTip = "Выберите элемент!";
+                ButtonDelete.Foreground = Brushes.Red;
+                return;
+            }
+            else
+            {
+                ButtonDelete.ToolTip = "";
+                ButtonDelete.Foreground = Brushes.LightGreen;
+            }
+
+            DataTable table = SQLbase.Select($"select * from Orders where login = N'{LOGIN}'");
+
+            DataRowView i = (DataRowView)listGoods.Items[x];
+            SQLbase.Insert($"delete Orders where good = N'{i.Row.ItemArray[1].ToString()}'");
+            
+            ShowList();
         }
 
         private void End(object sender, RoutedEventArgs e)
