@@ -97,7 +97,7 @@ namespace WpfApp1
             }
 
             DataTable table = SQLbase.Select($"select * from Orders where login = N'{LOGIN}'");
-            SQLbase.Insert($"update Orders set count = {int.Parse(Count.Text)} where login = N'{LOGIN}' and good = N'{table.Rows[x][1]}'");
+            SQLbase.Insert($"update Orders set count = {int.Parse(Count.Text)} where login = N'{LOGIN}' and good = N'{table.Rows[x][2]}'");
 
             ShowList();
         }
