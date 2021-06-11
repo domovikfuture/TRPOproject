@@ -150,7 +150,8 @@ namespace WpfApp1
 
         private void End(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("Заказ оставлен.");
+            this.Close();
         }
     }
 }

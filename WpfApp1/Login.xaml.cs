@@ -55,6 +55,14 @@ namespace WpfApp1
 
             if (isGood == true)
             {
+                if(login == "ADMIN" && password1 == "Admin")
+                {
+                    ListOrders s = new ListOrders();
+                    s.Show();
+                    this.Close();
+                    return;
+                }
+
                 DataTable table = SQLbase.Select($"select * from Customer where login = '{login}'");
               
                 if (table.Rows.Count > 0)
