@@ -7,7 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="113,147,0,0" VerticalAlignment="Top"/>
-
+        <Button HorizontalAlignment="Right" Name="continueButton" Width="75" Margin="0,0,8,11" Height="23" VerticalAlignment="Bottom" Click="continueButton_Click">
+            Navigate
+        </Button>
     </Grid>
+    private void continueButton_Click(object sender, RoutedEventArgs e)
+    {
+        this.NavigationService.Navigate("Page2.xaml")
+    }
 </Window>
