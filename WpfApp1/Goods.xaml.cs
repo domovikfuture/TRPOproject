@@ -128,6 +128,20 @@ namespace WpfApp1
             string price = SeatchPrice.Text;
             string name = SearchName.Text;
 
+
+            if (price.Length > 6)
+            {
+                SeatchPrice.ToolTip = "Ошибка ввода числа поиска!";
+                SeatchPrice.Foreground = Brushes.Red;
+                return;
+            }
+            else if (name.Length > 20)
+            {
+                SeatchPrice.ToolTip = "Ошибка ввода длинны названия поиска!";
+                SeatchPrice.Foreground = Brushes.Red;
+                return;
+            }
+
             foreach(Char x in price)
             {
                 if (!char.IsDigit(x))

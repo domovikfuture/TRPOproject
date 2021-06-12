@@ -67,6 +67,13 @@ namespace WpfApp1
         {
             string s = Count.Text;
 
+            if (s.Length > 6)
+            {
+                Count.ToolTip = "Ошибка ввода числа поиска!";
+                Count.Foreground = Brushes.Red;
+                return;
+            }
+
             foreach (Char u in s)
             {
                 if (!char.IsDigit(u))
