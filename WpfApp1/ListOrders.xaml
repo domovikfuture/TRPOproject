@@ -40,7 +40,9 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Выход" Grid.Column="1" />
+
+                    <Button Content="Отчёт" Grid.Column="0" Style="{StaticResource MaterialDesignOutlinedButton}" Click="Report"/>
+                    <Button Content="Выход" Grid.Column="2" Click="Exit"/>
                 </Grid>
             </StackPanel>
         </Border>
