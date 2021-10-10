@@ -167,17 +167,17 @@ namespace WpfApp1
             {
                 if (crt == Criterion.equal)
                 {
-                    ShowList($"select * from Goods where name = '{name}'");
+                    ShowList($"select * from Goods where [name] like '{name}%'");
 
                 }
                 if (crt == Criterion.more)
                 {
-                    ShowList($"select * from Goods where name = '{name}'");
+                    ShowList($"select * from Goods where [name] like '{name}%'");
 
                 }
                 if (crt == Criterion.less)
                 {
-                    ShowList($"select * from Goods where name = '{name}'");
+                    ShowList($"select * from Goods where [name] like '{name}%'");
 
                 }
                 return;

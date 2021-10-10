@@ -25,17 +25,13 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Вход" Grid.Column="0" Click="ButtonLoginGo" Cursor="Hand"/>
-                    <Button Click="Button_Reg_Click" Content="Регистрация" Grid.Column="2" Style="{StaticResource MaterialDesignOutlinedButton}" Cursor="Hand"/>
+                    <Button Content="Вход" Grid.Column="0" Click="ButtonLoginGo" Cursor="Hand" Background="Black" BorderBrush="Black"/>
+                    <Button Click="Button_Reg_Click" Content="Регистрация" Grid.Column="2" Style="{StaticResource MaterialDesignOutlinedButton}" Cursor="Hand" BorderBrush="#FF020202" Foreground="Black"/>
                 </Grid>
             </StackPanel>
         </Border>
 
- 
+
     </Grid>
-    private void continueButton_Click(object sender, RoutedEventArgs e)
-    {
-        this.NavigationService.Navigate("Page2.xaml")
-    }
 </Window>
     

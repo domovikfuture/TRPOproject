@@ -44,11 +44,12 @@
                             </Grid.RowDefinitions>
 
                             <Button Content="Изменить" Height="40" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingActionButton}"
-                                    Click="Edit" x:Name="ButtonEdit"/>
+                                    Click="Edit" x:Name="ButtonEdit" BorderBrush="#FF040404" Background="Black"/>
                             <Button Content="Удалить" Height="40" Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionButton}"
-                                    Click="Delete" x:Name="ButtonDelete"/>
-                            <Button Content="Далее" x:Name="ButtonAdd" Height="40" Style="{StaticResource MaterialDesignIconButton}"
-                                    Click="End" Grid.Row="1" Grid.ColumnSpan="2"/>
+                                    Click="Delete" x:Name="ButtonDelete" Background="Black" BorderBrush="Black"/>
+                            <!--<Button Content="Далее" x:Name="ButtonAdd" Height="40" Style="{StaticResource MaterialDesignIconButton}"
+                                    Click="End" Grid.Row="1" Grid.ColumnSpan="2" Foreground="Black" Cursor="Hand"/>-->
+                            
                         </Grid>
                     </StackPanel>
 
@@ -75,8 +76,8 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Товары" Grid.Column="0" Click="GoToGoods"/>
-                    <Button Content="Корзина" Grid.Column="2" Style="{StaticResource MaterialDesignOutlinedButton}"/>
+                    <Button Content="Товары" Grid.Column="0" Click="GoToGoods" Foreground="#DDFFFFFF" BorderBrush="Black" Background="Black"/>
+                    <Button Content="Корзина" Grid.Column="2" Style="{StaticResource MaterialDesignOutlinedButton}" Foreground="Black" BorderBrush="Black"/>
                 </Grid>
             </StackPanel>
         </Border>

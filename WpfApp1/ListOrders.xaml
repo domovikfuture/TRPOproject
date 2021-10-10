@@ -40,7 +40,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Выход" Grid.Column="1" />
+                    <Button Content="Выход" Grid.Column="1" Background="#FF060606" BorderBrush="Black" Cursor="Hand" />
                 </Grid>
             </StackPanel>
         </Border>
