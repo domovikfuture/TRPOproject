@@ -73,7 +73,8 @@ namespace WpfApp1
             System.Data.DataTable table = SQLbase.Select($"SELECT Заказы.id_товара, Название_товара, Дата_размещения, Стоимость FROM Заказы INNER JOIN Товары ON Заказы.id_товара = Товары.id_товара where id_клиента = '{LOGIN}'");
 
             DataRowView i = (DataRowView)listGoods.Items[x];
-            SQLbase.Insert($"delete Заказы where id_заказа = N'{i.Row.ItemArray[0].ToString()}'");
+
+            SQLbase.Insert($"delete Заказы where id_товара = N'{i.Row.ItemArray[0].ToString()}' and id_клиента = '{LOGIN}'");
 
             ShowList();
         }
