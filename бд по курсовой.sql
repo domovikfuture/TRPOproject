@@ -45,22 +45,19 @@ create table Товары (
 	id_товара int primary key identity(1,1) not null,
 	id_поставки int not null,
 	Название_товара nchar(200) not null,
-	Описание nchar(500) default('Null') not null,
-	Технические_харки nchar(200) default('Null') not null,
+	Описание nchar(500) default('No') not null,
+	Технические_харки nchar(200) default('No') not null,
 	Наличие nchar(20) not null,
-	Количество int default('Null') not null,
+	Количество int default(10) not null,
 	Стоимость int not null,
 	constraint fk_id_postavki foreign key (id_поставки) references Поставка(id_поставки)
 )
 
 create table Заказы (
-	id_заказа int primary key not null,
-	id_сотрудника int not null,
+	id_заказа int primary key identity(1,1) not null,
 	id_товара int not null,
-	id_клиента int not null,
-	Дата_размещения date not null,
-	Дата_исполнения date not null
-	constraint fk_id_sotrudnik foreign key (id_сотрудника) references Сотрудники(id_сотрудника),
+	id_клиента nchar(100) not null,
+	Дата_размещения date not null
 	constraint fk_id_tovara foreign key (id_товара) references Товары(id_товара),
 	constraint fk_id_client foreign key (id_клиента) references Клиенты(id_клиента),
 )
@@ -84,9 +81,13 @@ values
 (1, 'Глупые мысли','Есть', 1000),
 (1, 'Умные мысли','Есть', 100),
 (1, 'История древнего Рима','Есть', 200),
-(1, 'Анекдоты','Есть', 200),
-(1, 'Вокзал','Есть', 200)
+(1, 'Анекдоты','Есть', 128),
+(1, 'Вокзал','Есть', 544)
 
 select * from Клиенты, Поставщик, Поставка
 select * from Товары
 
+select * from Заказы
+
+SELECT Заказы.id_товара, Название_товара, Дата_размещения, Стоимость FROM Заказы INNER JOIN Товары ON Заказы.id_товара = Товары.id_товара where id_клиента = 'STAS';
+select SUM(Стоимость) from Заказы INNER JOIN Товары ON Заказы.id_товара = Товары.id_товара where id_клиента = 'STAS'
