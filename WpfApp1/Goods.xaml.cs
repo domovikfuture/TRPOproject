@@ -27,14 +27,14 @@ namespace WpfApp1
             InitializeComponent();
 
             this.LOGIN = _login;
-            ShowList($"select * from Goods");
+            ShowList($"select * from Товары");
         }
 
         public Goods()
         {
             LOGIN = "Admin";
             InitializeComponent();
-            ShowList($"select * from Goods");
+            ShowList($"select * from Товары");
         }
 
         private enum Criterion
@@ -51,22 +51,12 @@ namespace WpfApp1
             listGoods.ItemsSource = talbe.DefaultView;
         }
 
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    DataRowView x = (DataRowView)listGoods.Items[0];
-        //    string s = "";
-        //    foreach (var item in x.Row.ItemArray)
-        //    {
-        //        s += item.ToString()+"*";
-        //    }
-        //    MessageBox.Show(x.Row.ItemArray[0].ToString()+"\n\n"+s);// x.Row.Field<double>("price").ToString());
-        //}
 
         private void AddGoods(object sender, RoutedEventArgs e)
         {
             int x = listGoods.SelectedIndex;
 
-            DataTable table = SQLbase.Select($"select * from Goods");
+            DataTable table = SQLbase.Select($"select * from Товары");
             
 
             if (x == -1)
@@ -81,16 +71,10 @@ namespace WpfApp1
                 ButtonAdd.Foreground = Brushes.LightGreen;
             }
 
-            DataTable tableOrders = SQLbase.Select($"select login, good, count from Orders where login = N'{LOGIN}' and good = N'{table.Rows[x][0]}'");
+            SQLbase.Insert($"insert into Заказы( id_товара, id_клиента, Дата_размещения) values ( {table.Rows[x][0]}, '{LOGIN}', GETDATE())");
 
-            if (tableOrders.Rows.Count > 0)
-            {
-                SQLbase.Insert($"update Orders set count = {(int)tableOrders.Rows[0][2] + 1} where login = N'{LOGIN}' and good = N'{table.Rows[x][0]}';");
-            }
-            else
-            {
-                SQLbase.Insert($"insert into Orders(login, good, count) values (N'{LOGIN}',N'{table.Rows[x][0]}',N'1')");
-            }
+            MessageBox.Show("Товар добавлен!");
+
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
@@ -120,7 +104,7 @@ namespace WpfApp1
             SeatchPrice.Text = "";
             SearchName.Text = "";
 
-            ShowList($"select * from Goods");
+            ShowList($"select * from Товары");
         }
 
         private void Search(object sender, RoutedEventArgs e)
@@ -148,17 +132,17 @@ namespace WpfApp1
                 int price_int = int.Parse(price);
                 if (crt == Criterion.equal)
                 {
-                    ShowList($"select * from Goods where price = {price_int}");
+                    ShowList($"select * from Товары where Стоимость = {price_int}");
 
                 }
                 if (crt == Criterion.more)
                 {
-                    ShowList($"select * from Goods where price >= {price_int}");
+                    ShowList($"select * from Товары where Стоимость >= {price_int}");
 
                 }
                 if (crt == Criterion.less)
                 {
-                    ShowList($"select * from Goods where price <= {price_int}");
+                    ShowList($"select * from Товары where Стоимость <= {price_int}");
 
                 }
                 return;
@@ -167,17 +151,17 @@ namespace WpfApp1
             {
                 if (crt == Criterion.equal)
                 {
-                    ShowList($"select * from Goods where [name] like '{name}%'");
+                    ShowList($"select * from Товары where [Название_товара] like '{name}%'");
 
                 }
                 if (crt == Criterion.more)
                 {
-                    ShowList($"select * from Goods where [name] like '{name}%'");
+                    ShowList($"select * from Товары where [Название_товара] like '{name}%'");
 
                 }
                 if (crt == Criterion.less)
                 {
-                    ShowList($"select * from Goods where [name] like '{name}%'");
+                    ShowList($"select * from Товары where [Название_товара] like '{name}%'");
 
                 }
                 return;
@@ -186,24 +170,24 @@ namespace WpfApp1
             {
                 if (crt == Criterion.equal)
                 {
-                    ShowList($"select * from Goods where price = {price} and name = '{name}'");
+                    ShowList($"select * from Товары where price = {price} and Название_товара = '{name}'");
 
                 }
                 if (crt == Criterion.more)
                 {
-                    ShowList($"select * from Goods where price >= {price} and name = '{name}'");
+                    ShowList($"select * from Товары where price >= {price} and Название_товара = '{name}'");
 
                 }
                 if (crt == Criterion.less)
                 {
-                    ShowList($"select * from Goods where price <= {price} and name = '{name}'");
+                    ShowList($"select * from Товары where price <= {price} and Название_товара = '{name}'");
 
                 }
                 return;
             }
             else
             {
-                ShowList($"select * from Goods");
+                ShowList($"select * from Товары");
             }
         }
 

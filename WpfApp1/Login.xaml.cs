@@ -26,7 +26,7 @@ namespace WpfApp1
         private void Button_Login_Click(object sender, RoutedEventArgs e)
         {
             string login = loginBox.Text.Trim().ToUpper(); 
-            string password1 = firstPassBox.Password.Trim();
+            string number = numberBox.Text;
 
             bool isGood = true;
             if (login.Length < 1)
@@ -41,21 +41,21 @@ namespace WpfApp1
                 loginBox.Foreground = Brushes.Black;
             }
 
-            if (password1.Length < 1)
+            if (number.Length != 12)
             {
                 isGood = false;
-                firstPassBox.ToolTip = "Введите пароль!";
-                firstPassBox.Foreground = Brushes.Red;
+                numberBox.ToolTip = "Введите номер!";
+                numberBox.Foreground = Brushes.Red;
             }
             else
             {
-                firstPassBox.ToolTip = " ";
-                firstPassBox.Foreground = Brushes.Black;
+                numberBox.ToolTip = " ";
+                numberBox.Foreground = Brushes.Black;
             }
 
             if (isGood == true)
             {
-                if(login == "ADMIN" && password1 == "Admin")
+                if(login == "ADMIN" && number == "Admin")
                 {
                     ListOrders s = new ListOrders();
                     s.Show();
@@ -63,13 +63,13 @@ namespace WpfApp1
                     return;
                 }
 
-                DataTable table = SQLbase.Select($"select * from Customer where login = '{login}'");
+                DataTable table = SQLbase.Select($"select * from Клиенты where id_клиента = '{login}'");
               
                 if (table.Rows.Count > 0)
                 {
                     loginBox.ToolTip = " ";
                     loginBox.Foreground = Brushes.Black;
-                    table = SQLbase.Select($"select * from Customer where login = '{login}' and pass = '{password1}'");
+                    table = SQLbase.Select($"select * from Клиенты where id_клиента = '{login}' and Телефон = '{number}'");
                     if(table.Rows.Count > 0)
                     {
                         Goods s = new Goods(login);
@@ -79,8 +79,8 @@ namespace WpfApp1
                     }
                     else
                     {
-                        firstPassBox.ToolTip = "Неправильный пароль!";
-                        firstPassBox.Foreground = Brushes.Red;
+                        numberBox.ToolTip = "Неправильный пароль!";
+                        numberBox.Foreground = Brushes.Red;
                     }
                 }
                 else

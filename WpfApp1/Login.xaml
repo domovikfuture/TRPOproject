@@ -16,9 +16,11 @@
             </Border.Effect>
 
             <StackPanel>
-                <TextBlock Text="Вход" HorizontalAlignment="Center" FontSize="40" Style="{StaticResource MaterialDesignCharacterCounterTextBlock}" />
-                <TextBox x:Name="loginBox" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  materialDesign:HintAssist.Hint="Логин" Cursor="IBeam"/>
-                <PasswordBox x:Name="firstPassBox" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Пароль"/>
+                <TextBlock Text="Вход" HorizontalAlignment="Center" FontSize="40" Style="{StaticResource MaterialDesignCharacterCounterTextBlock}"/>
+                <TextBox x:Name="loginBox" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  
+                         materialDesign:HintAssist.Hint="Логин" MaxLength="50"/>
+                <TextBox x:Name="numberBox" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  
+                         materialDesign:HintAssist.Hint="Номер телефона" MaxLength="12"/>
                 <Grid Margin="20,15">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>

@@ -30,8 +30,8 @@ namespace WpfApp1
         {
             string login = loginBox.Text.Trim().ToUpper();
             string []name = nameBox.Text.Trim().Split(" ");
-            string password1 = firstPassBox.Password.Trim();
-            string password2 = secondPassBox.Password.Trim();
+            string adr = adress.Text;
+            string num = number.Text;
 
             bool isGood = true;
             //Проверка поля логина
@@ -69,7 +69,7 @@ namespace WpfApp1
                 }
                 else
                 {
-                    DataTable table = SQLbase.Select($"select * from Customer where login = '{login}'");
+                    DataTable table = SQLbase.Select($"select * from Клиенты where id_клиента = '{login}'");
                     if (table.Rows.Count > 0)
                     {
                         isGood = false;
@@ -98,38 +98,38 @@ namespace WpfApp1
             }
 
             //Проверка пароля
-            if(password1.Length < 4 && password1.Length > 16)
+            if(adr == "")
             {
                 isGood = false;
-                firstPassBox.ToolTip = "Длина пароля должна быть от 4 до 16 символов!";
-                firstPassBox.Foreground = Brushes.Red;
+                adress.ToolTip = "Пустое поле!";
+                adress.Foreground = Brushes.Red;
             }
             else
             {
-                firstPassBox.ToolTip = "";
-                firstPassBox.Foreground = Brushes.Black;
+                adress.ToolTip = "";
+                adress.Foreground = Brushes.Black;
             }
-
+            
             //Подтверждение пароля
-            if(password1 != password2)
+            if(num.Length != 12)
             {
                 isGood = false;
-                secondPassBox.ToolTip = "Пароли не совпадают";
-                secondPassBox.Foreground = Brushes.Red;
+                number.ToolTip = "Неверная длина";
+                number.Foreground = Brushes.Red;
             }
             else
             {
-                secondPassBox.ToolTip = "";
-                secondPassBox.Foreground = Brushes.Black;
+                number.ToolTip = "";
+                number.Foreground = Brushes.Black;
             }
 
             if(isGood == true)
             {
                 loginBox.Text = "";
                 nameBox.Text = "";
-                firstPassBox.Password = "";
-                secondPassBox.Password = "";
-                SQLbase.Insert($"insert into Customer(login, name, pass) values (N'{login}',N'{name}',N'{password1}')");
+                adress.Text = "";
+                number.Text = "";
+                SQLbase.Insert($"insert into Клиенты(id_клиента, ФИО_клиента, Адрес, Телефон) values ('{login}', '{name[0]} {name[1]} {name[2]}', '{adr}', '{num}')");
                 Login log = new Login();
 
                 this.Close();

@@ -15,10 +15,15 @@
 
             <StackPanel>
                 <TextBlock Text="Регистрация" HorizontalAlignment="Center" FontSize="40" Style="{StaticResource MaterialDesignCharacterCounterTextBlock}" />
-                <TextBox x:Name="loginBox" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  materialDesign:HintAssist.Hint="Логин" Cursor="IBeam"/>
-                <TextBox x:Name="nameBox" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  materialDesign:HintAssist.Hint="ФИО" Cursor="IBeam"/>
-                <PasswordBox x:Name="firstPassBox" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Пароль"/>
-                <PasswordBox x:Name="secondPassBox" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" materialDesign:HintAssist.Hint="Подтверждение пароля"/>
+                <TextBox x:Name="loginBox" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         materialDesign:HintAssist.Hint="Логин" MaxLength="20"/>
+                <TextBox x:Name="nameBox" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="ФИО" MaxLength="50"/>
+                <TextBox x:Name="adress" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  
+                         materialDesign:HintAssist.Hint="Адрес" MaxLength="50"/>
+                <TextBox x:Name="number" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         materialDesign:HintAssist.Hint="Номер телефона" MaxLength="12"/>
+                
                 <Grid Margin="20,15">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>

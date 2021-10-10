@@ -10,7 +10,7 @@
         Title="Adjust" Height="450" Width="800" ResizeMode="NoResize">
 
     <Grid Background="#d9cece">
-        <Border Background="White" VerticalAlignment="Center" Padding="40,20" MinWidth="400" MaxWidth="600" CornerRadius="15">
+        <Border Background="White" VerticalAlignment="Center" Padding="40,20" Width="700" CornerRadius="15">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="20" Color="DarkGray" ShadowDepth="0"/>
             </Border.Effect>
@@ -21,49 +21,33 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition Width="1"/>
-                        <ColumnDefinition Width="350"/>
+                        <ColumnDefinition Width="450"/>
                     </Grid.ColumnDefinitions>
 
 
 
                     <StackPanel >
                         <Label Content="Редактирование" HorizontalAlignment="Center" FontSize="15"/>
-                        <TextBox x:Name="Count" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  materialDesign:HintAssist.Hint="Количество" Margin="0 0 0 5"/>
 
                         <Label Content="Сумма заказа: " HorizontalAlignment="Center" FontSize="13"
                                Margin="010" x:Name="orderPrice"/>
-
-                        <Grid Margin="0 20">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-
-                            <Button Content="Изменить" Height="40" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingActionButton}"
-                                    Click="Edit" x:Name="ButtonEdit" BorderBrush="#FF040404" Background="Black"/>
-                            <Button Content="Удалить" Height="40" Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                        <Button Content="Удалить" Height="40" Style="{StaticResource MaterialDesignFloatingActionButton}"
                                     Click="Delete" x:Name="ButtonDelete" Background="Black" BorderBrush="Black"/>
-                            <!--<Button Content="Далее" x:Name="ButtonAdd" Height="40" Style="{StaticResource MaterialDesignIconButton}"
-                                    Click="End" Grid.Row="1" Grid.ColumnSpan="2" Foreground="Black" Cursor="Hand"/>-->
-                            
-                        </Grid>
+                        <Button Content="Печать" Height="40" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                                    Click="End" Background="Black" BorderBrush="Black" Margin="10"/>
                     </StackPanel>
 
                     <Border Background="DarkSeaGreen" Grid.Column="1" CornerRadius="20"/>
 
-                    <ListView Height="220" x:Name="listGoods" Grid.Column="2" SelectionChanged="makeSelect">
+                    <ListView Height="220" x:Name="listGoods" Grid.Column="2">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=good}" 
-                                            Header="Название"/>
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=price}" 
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Название_товара}" 
+                                            Header="Название" Width="150"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Дата_размещения}" 
+                                            Header="Дата"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Стоимость}" 
                                             Header="Цена"/>
-                                <GridViewColumn DisplayMemberBinding="{Binding Path=count}" 
-                                            Header="Кол-во"/>
                             </GridView>
                         </ListView.View>
                     </ListView>

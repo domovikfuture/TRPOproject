@@ -10,16 +10,16 @@
         Title="Adjust" Height="450" Width="800" ResizeMode="NoResize">
 
     <Grid Background="#d9cece">
-        <Border Background="White" VerticalAlignment="Center" Padding="40,20" MinWidth="400" MaxWidth="600" CornerRadius="15">
+        <Border Background="White" VerticalAlignment="Center" Padding="40,20" Width="auto" CornerRadius="15">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="20" Color="DarkGray" ShadowDepth="0"/>
             </Border.Effect>
 
             <StackPanel>
-                <TextBlock HorizontalAlignment="Center" FontSize="30" Style="{StaticResource MaterialDesignCharacterCounterTextBlock}" Text="Пиар Дом"/>
+                <TextBlock HorizontalAlignment="Center" FontSize="30" Style="{StaticResource MaterialDesignCharacterCounterTextBlock}" Text="Товары"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="255"/>
                         <ColumnDefinition Width="1"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
@@ -57,24 +57,22 @@
                     <Border Background="DarkSeaGreen" Grid.Column="1" CornerRadius="20"/>
 
                     <ListView Height="220" x:Name="listGoods" Grid.Column="2">
-                    <ListView.View>
-                        <GridView >
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=name}" 
-                                            Header="Название" />
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=price}" 
-                                            Header="Цена"/>
-                            <!--<GridViewColumn Header="Изображение">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Image Source="{Binding Path=Image}"/>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>-->
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                        <ListView.View>
+                            <GridView >
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=id_товара}" 
+                                            Header="№"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Название_товара}" 
+                                            Header="Название" Width="150"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Наличие}" 
+                                            Header="Наличие"/>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=Стоимость}" 
+                                            Header="Стоимость"/>
 
-                    
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+
                 </Grid>
                 <Grid Margin="20,15">
                     <Grid.ColumnDefinitions>

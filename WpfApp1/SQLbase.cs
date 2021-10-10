@@ -12,7 +12,7 @@ namespace WpfApp1
 
         static public void Insert(string str)
         {
-            SqlConnection sqlConnection = new SqlConnection("server=localhost;Trusted_Connection=Yes;DataBase=Pawnshop;");
+            SqlConnection sqlConnection = new SqlConnection("server=localhost;Trusted_Connection=Yes;DataBase=bd_kurs;");
             sqlConnection.Open();
             SqlCommand sqlCommand = sqlConnection.CreateCommand();
             sqlCommand.CommandText = str;
@@ -25,7 +25,7 @@ namespace WpfApp1
         {
             DataTable dataTable = new DataTable();
 
-            SqlConnection sqlConnection = new SqlConnection("server=localhost;Trusted_Connection=Yes;DataBase=Pawnshop;");
+            SqlConnection sqlConnection = new SqlConnection("server=localhost;Trusted_Connection=Yes;DataBase=bd_kurs;");
             sqlConnection.Open();                                           // открываем базу данных
             SqlCommand sqlCommand = sqlConnection.CreateCommand();          // создаём команду
             sqlCommand.CommandText = str;                             // присваиваем команде текст
